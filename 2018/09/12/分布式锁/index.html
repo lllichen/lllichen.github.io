@@ -7,18 +7,18 @@
   
   <title>分布式锁 | heloo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="锁锁解决的问题 分布式锁解决的是多进程访问临界资源的问题 redis 分布式锁redis 事务有以下特点: 原子性，当服务器处理某个clent 端的redis事务请求时，在这个事务结束之前，redis不会接受其他client端的请求luna脚本 解决redis 命令 彼此独立，无法进行 getAndSet 的组合命令的操作该方案在redis 单点系统无问题，在redis集群会存在潜在问题 zook">
+  <meta name="description" content="锁锁解决的问题当线程访问临界变量时，需要设置标记，保证线程访问的原子性和可见性java中通常通过sychronize 关键字 和 Lock 类来实现  分布式锁分布式锁解决的是多进程访问临界资源的问题，即在分布式场景下，访问临界资源时，如何保证一致性。思路与多线程访问一致，即设置一个可以访问的公共边量，阻塞进程，达到一致性，但分布式场景设计网络延时等场景，所以更复杂。 利用 redis 构建分布式">
 <meta name="keywords" content="distribute lock">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式锁">
 <meta property="og:url" content="http://yoursite.com/2018/09/12/分布式锁/index.html">
 <meta property="og:site_name" content="heloo">
-<meta property="og:description" content="锁锁解决的问题 分布式锁解决的是多进程访问临界资源的问题 redis 分布式锁redis 事务有以下特点: 原子性，当服务器处理某个clent 端的redis事务请求时，在这个事务结束之前，redis不会接受其他client端的请求luna脚本 解决redis 命令 彼此独立，无法进行 getAndSet 的组合命令的操作该方案在redis 单点系统无问题，在redis集群会存在潜在问题 zook">
+<meta property="og:description" content="锁锁解决的问题当线程访问临界变量时，需要设置标记，保证线程访问的原子性和可见性java中通常通过sychronize 关键字 和 Lock 类来实现  分布式锁分布式锁解决的是多进程访问临界资源的问题，即在分布式场景下，访问临界资源时，如何保证一致性。思路与多线程访问一致，即设置一个可以访问的公共边量，阻塞进程，达到一致性，但分布式场景设计网络延时等场景，所以更复杂。 利用 redis 构建分布式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-18T10:51:48.886Z">
+<meta property="og:updated_time" content="2018-09-21T09:56:11.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
-<meta name="twitter:description" content="锁锁解决的问题 分布式锁解决的是多进程访问临界资源的问题 redis 分布式锁redis 事务有以下特点: 原子性，当服务器处理某个clent 端的redis事务请求时，在这个事务结束之前，redis不会接受其他client端的请求luna脚本 解决redis 命令 彼此独立，无法进行 getAndSet 的组合命令的操作该方案在redis 单点系统无问题，在redis集群会存在潜在问题 zook">
+<meta name="twitter:description" content="锁锁解决的问题当线程访问临界变量时，需要设置标记，保证线程访问的原子性和可见性java中通常通过sychronize 关键字 和 Lock 类来实现  分布式锁分布式锁解决的是多进程访问临界资源的问题，即在分布式场景下，访问临界资源时，如何保证一致性。思路与多线程访问一致，即设置一个可以访问的公共边量，阻塞进程，达到一致性，但分布式场景设计网络延时等场景，所以更复杂。 利用 redis 构建分布式">
   
     <link rel="alternate" href="/atom.xml" title="heloo" type="application/atom+xml">
   
@@ -91,16 +91,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>锁解决的问题</p>
-<p>分布式锁解决的是多进程访问临界资源的问题</p>
-<h3 id="redis-分布式锁"><a href="#redis-分布式锁" class="headerlink" title="redis 分布式锁"></a>redis 分布式锁</h3><p>redis 事务有以下特点: 原子性，<br>当服务器处理某个clent 端的redis事务请求时，在这个事务结束之前，redis不会接受其他client端的请求<br>luna脚本 解决redis 命令 彼此独立，无法进行 getAndSet 的组合命令的操作<br>该方案在redis 单点系统无问题，在redis集群会存在潜在问题</p>
+        <h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>锁解决的问题<br>当线程访问临界变量时，需要设置标记，保证线程访问的原子性和可见性<br>java中通常通过sychronize 关键字 和 Lock 类来实现 </p>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p>分布式锁解决的是多进程访问临界资源的问题，即在分布式场景下，访问临界资源时，如何保证一致性。思路与<br>多线程访问一致，即设置一个可以访问的公共边量，阻塞进程，达到一致性，但分布式场景设计网络延时等场景，所以更复杂。</p>
+<h4 id="利用-redis-构建分布式锁"><a href="#利用-redis-构建分布式锁" class="headerlink" title="利用 redis 构建分布式锁"></a>利用 redis 构建分布式锁</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">redis 是单线程的，所以redis 每个操作都是原子的</span><br><span class="line">redis 事务操作: MULTI EXEC DISCARD WATCH UNWATCH，有如下特性，即当redis 处理事务操作时，redis不会处理其他client端的命令。2.6之后引入luna脚本，一个luna脚本的事务性与redis 事务命令一致，且操作是原子的。</span><br><span class="line">set key value nx ex  当不存在key 时设置成功，同时设置存活时间，防止线程挂掉导致无法释放锁，value 值可以设置个随机字符串，保证持有锁的人删除锁</span><br><span class="line">利用luna 脚本，实现get 锁的值，如果符合，则删除该值</span><br></pre></td></tr></table></figure>
 <p>zookeeper 分布式锁</p>
 <p>db 分布式锁</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjm7lsady0004y0np7500gc2g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjmbuad9j000110np5um5xgt4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distribute-lock/">distribute lock</a></li></ul>
