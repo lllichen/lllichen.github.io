@@ -70,6 +70,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-dp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/02/dp/" class="article-date">
+  <time datetime="2019-01-02T08:31:55.000Z" itemprop="datePublished">2019-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/02/dp/">dp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="dp处理原则"><a href="#dp处理原则" class="headerlink" title="dp处理原则"></a>dp处理原则</h3><ol>
+<li>动态规划可以在给定约束条件下找到最优解。</li>
+<li>问题可分解为彼此独立且离散的子问题</li>
+</ol>
+<h3 id="解决dp思路"><a href="#解决dp思路" class="headerlink" title="解决dp思路"></a>解决dp思路</h3><ol>
+<li>表格中的值代表什么</li>
+<li>如何分解子问题</li>
+<li>如何确定坐标轴</li>
+</ol>
+<h4 id="最长递增子序列解法："><a href="#最长递增子序列解法：" class="headerlink" title="最长递增子序列解法："></a>最长递增子序列解法：</h4><p>递推公式</p>
+<ol>
+<li>dp[i] = max(dp[i],d[ 0 ~ i-1]+1); 时间复杂度  $O(n^2)$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(n^2)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>空间复杂度 O（n)</p>
+<ol start="2">
+<li>利用二分查找定位子序列最后值位置，时间复杂度O(n*logn)，空间复杂度 O(n)</li>
+<li>bruce force,时间复杂度<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(2^n)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题:"></a>背包问题:</h4><p>cell[i][j] = max (上一个单元格的值, 当前商品价值+剩余空间的价值 ),即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cell[i][j] = max ( cell[i-1][j] , f(i) + cell[i-1][j-i] )</span><br><span class="line"></span><br><span class="line">//注: f(i) 标识当前商品价值，j-i 表示剩余空间价值！</span><br></pre></td></tr></table></figure>
+<h4 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h4><p>如果字母不同，则值为0，如果字母相同，则值为左上角值+1，伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if word_a[i] == word_b[j]:</span><br><span class="line">    cell[i][j] = cell[i-1][j-1]+1;</span><br><span class="line">else:</span><br><span class="line">    cell[i][j] = 0;</span><br></pre></td></tr></table></figure>
+<h4 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h4><p>如果两个字母不同，就选择上方和左方邻居中较大的那个，如果两个字母相同，就将当前单元格值设置为左上方单元格的值加1，伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if word_a[i] == word_b[j]:</span><br><span class="line">    cell[i][j] = cell[i-1)[j-1]+1;</span><br><span class="line">else:</span><br><span class="line">    cell[i][j] = max(cell[i-1][j],cell[i][j-1]);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/02/dp/" data-id="cjqexbk3j000154npqtzhtynw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/">dp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-a-little" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/16/a-little/" class="article-date">
@@ -99,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/16/a-little/" data-id="cjncmxfpx0000x8np14wdb07h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/16/a-little/" data-id="cjqexbk39000054npa0viyk41" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想/">随想</a></li></ul>
@@ -144,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/redis-data-struct/" data-id="cjncmxfqm0008x8np6wpiuitj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/redis-data-struct/" data-id="cjqexbk4d000g54npufwe7bah" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -183,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/18/dubbo-registry/" data-id="cjncmxfqf0004x8np7euzvs28" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/18/dubbo-registry/" data-id="cjqexbk3s000554np8mltg1jf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
@@ -242,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjncmxfq60001x8np04k0rzd3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjqexbk3t000854np6165s789" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distribute-lock/">distribute lock</a></li></ul>
@@ -290,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/garbage_collection/" data-id="cjncmxfqj0005x8npwjmve536" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/20/garbage_collection/" data-id="cjqexbk3q000454npy12z0q56" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -337,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/hello-world/" data-id="cjncmxfqc0003x8npg9kcztr9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/20/hello-world/" data-id="cjqexbk3p000354npw606o0w3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +423,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/distribute-lock/">distribute lock</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随想/">随想</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/distribute-lock/">distribute lock</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dp/">dp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随想/">随想</a></li></ul>
     </div>
   </div>
 
@@ -370,7 +433,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/distribute-lock/" style="font-size: 10px;">distribute lock</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/随想/" style="font-size: 10px;">随想</a>
+      <a href="/tags/distribute-lock/" style="font-size: 10px;">distribute lock</a> <a href="/tags/dp/" style="font-size: 10px;">dp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/随想/" style="font-size: 10px;">随想</a>
     </div>
   </div>
 
@@ -379,7 +442,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
     </div>
   </div>
 
@@ -390,6 +453,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/01/02/dp/">dp</a>
+          </li>
         
           <li>
             <a href="/2018/10/16/a-little/">a little</a>
@@ -407,10 +474,6 @@
             <a href="/2018/09/12/分布式锁/">分布式锁</a>
           </li>
         
-          <li>
-            <a href="/2018/08/20/garbage_collection/">garbage_collection</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -423,7 +486,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 lichen<br>
+      &copy; 2019 lichen<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
