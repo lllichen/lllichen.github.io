@@ -103,7 +103,7 @@
 </ol>
 <h4 id="最长递增子序列解法："><a href="#最长递增子序列解法：" class="headerlink" title="最长递增子序列解法："></a>最长递增子序列解法：</h4><p>递推公式</p>
 <ol>
-<li>dp[i] = max(dp[i],d[ 0 ~ i-1]+1); 时间复杂度  $O(n^2)$<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(n^2)</span><br></pre></td></tr></table></figure>
+<li>dp[i] = max(dp[i],d[ 0 ~ i-1]+1); 时间复杂度 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(n^2)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>空间复杂度 O（n)</p>
@@ -116,12 +116,96 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cell[i][j] = max ( cell[i-1][j] , f(i) + cell[i-1][j-i] )</span><br><span class="line"></span><br><span class="line">//注: f(i) 标识当前商品价值，j-i 表示剩余空间价值！</span><br></pre></td></tr></table></figure>
 <h4 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h4><p>如果字母不同，则值为0，如果字母相同，则值为左上角值+1，伪代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if word_a[i] == word_b[j]:</span><br><span class="line">    cell[i][j] = cell[i-1][j-1]+1;</span><br><span class="line">else:</span><br><span class="line">    cell[i][j] = 0;</span><br></pre></td></tr></table></figure>
+<p>HISH 和 FISH 表格分析</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>H</th>
+<th>I</th>
+<th>S</th>
+<th>H </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0 </td>
+</tr>
+<tr>
+<td>I</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>H</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3    </td>
+</tr>
+</tbody>
+</table>
 <h4 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h4><p>如果两个字母不同，就选择上方和左方邻居中较大的那个，如果两个字母相同，就将当前单元格值设置为左上方单元格的值加1，伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if word_a[i] == word_b[j]:</span><br><span class="line">    cell[i][j] = cell[i-1)[j-1]+1;</span><br><span class="line">else:</span><br><span class="line">    cell[i][j] = max(cell[i-1][j],cell[i][j-1]);</span><br></pre></td></tr></table></figure></p>
-
+<h4 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h4><p>如果两字母不同为0，如果两字母相同，如果位置差1，则为1，否则 前后各缩进一个字母是否为回文子串</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>/</td>
+<td>/</td>
+<td>/ </td>
+</tr>
+<tr>
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>/</td>
+<td>/</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>/</td>
+</tr>
+<tr>
+<td>C</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0    </td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dp[i, j] = 1                                               if i == j</span><br><span class="line"></span><br><span class="line">           = s[i] == s[j]                                if j = i + 1</span><br><span class="line"></span><br><span class="line">           = s[i] == s[j] &amp;&amp; dp[i + 1][j - 1]    if j &gt; i + 1</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/02/dp/" data-id="cjqexbk3j000154npqtzhtynw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/02/dp/" data-id="cjqj2sp0l0000wsnpn9py89cy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/">dp</a></li></ul>
@@ -162,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/16/a-little/" data-id="cjqexbk39000054npa0viyk41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/16/a-little/" data-id="cjqj2sp0v0001wsnpnlweqbc1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想/">随想</a></li></ul>
@@ -207,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/redis-data-struct/" data-id="cjqexbk4d000g54npufwe7bah" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/redis-data-struct/" data-id="cjqj2sp2w000bwsnpdhbspoq6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -246,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/18/dubbo-registry/" data-id="cjqexbk3s000554np8mltg1jf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/18/dubbo-registry/" data-id="cjqj2sp2m0009wsnp1qb4r1ct" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
@@ -305,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjqexbk3t000854np6165s789" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/12/分布式锁/" data-id="cjqj2sp2r000awsnprmrujhdi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distribute-lock/">distribute lock</a></li></ul>
@@ -353,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/garbage_collection/" data-id="cjqexbk3q000454npy12z0q56" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/20/garbage_collection/" data-id="cjqj2sp2b0006wsnp1jl2oh88" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -400,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/hello-world/" data-id="cjqexbk3p000354npw606o0w3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/20/hello-world/" data-id="cjqj2sp2g0007wsnp9bma4a6z" class="article-share-link">Share</a>
       
       
     </footer>
